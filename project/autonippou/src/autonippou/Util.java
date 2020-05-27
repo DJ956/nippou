@@ -1,16 +1,17 @@
 package autonippou;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Util {
 
 	private static final String SPLITOR = ",,";
 
 	/***
-	 * 
-	 * @param path 
+	 *
+	 * @param path
 	 * @param understand
 	 * @return
 	 */
@@ -18,7 +19,7 @@ public class Util {
 		Nippou nippou = new Nippou();
 		var builder = new StringBuilder();
 
-		try(var reader = new BufferedReader(new FileReader(path))) {
+		try(var reader = new BufferedReader(new InputStreamReader(new FileInputStream(path),"Shift-JIS"))) {
 			String line;
 			while((line = reader.readLine()) != null) {
 				builder.append(line);

@@ -10,6 +10,7 @@ public class Main {
 			return;
 		}
 
+		System.out.println("Nippou uploader ver:1.0.1");
 		var id = args[0];
 		var pw = args[1];
 		var understand = Integer.valueOf(args[2]);

@@ -5,6 +5,7 @@ import java.util.Random;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -91,8 +92,20 @@ public class RookieAgent {
 	}
 
 	private void moveReportURL() {
-		var elem = driver.findElement(By.className("create-report"));
-		elem.findElement(By.tagName("a")).click();
+		var elems = driver.findElements(By.className("create-report"));
+		WebElement targetElm = null;
+		for(var elm : elems) {
+			if(elm.getText().equals("create日報を書く")) {
+				targetElm = elm;
+				break;
+			}
+		}
+
+		if(targetElm == null) {
+			return;
+		}
+
+		targetElm.click();
 
 		new WebDriverWait(driver, 10).until((ExpectedCondition<Boolean>) webdriver -> webdriver.getTitle().length() > 0);
 
